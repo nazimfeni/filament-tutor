@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CountryResource\Pages;
-use App\Filament\Resources\CountryResource\RelationManagers;
 use App\Models\Country;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CountryResource extends Resource
 {
@@ -23,15 +20,22 @@ class CountryResource extends Resource
     protected static ?string $navigationGroup = 'System Management';
     protected static ?int $navigationSort = 1;
 
-
-
-
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(3),
+                Forms\Components\TextInput::make('phonecode')
+                    ->required()
+                    // ->numeric()
+                    ->maxLength(5),
+
             ]);
     }
 
@@ -39,7 +43,10 @@ class CountryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('code'),
+                Tables\Columns\TextColumn::make('phonecode'),
+
             ])
             ->filters([
                 //

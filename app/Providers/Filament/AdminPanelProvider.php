@@ -27,9 +27,18 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            //->brandName('Filament Demo')
+            ->brandLogo(asset('images/sara.png'))
+            ->favicon(asset('images/favico.ico'))
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            ->font('Inter')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
